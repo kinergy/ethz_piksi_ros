@@ -252,7 +252,7 @@ class PiksiMulti:
 
         # do not publish llh message, prefer publishing directly navsatfix_spp or navsatfix_rtk_fix.
         # KIMON: uncommented this
-        self.init_callback('pos_llh', PosLlh,
+        self.init_callback('pos_llh', PosLlhMulti,
                           SBP_MSG_POS_LLH, MsgPosLLH,
                           'tow', 'lat', 'lon', 'height', 'h_accuracy', 'v_accuracy', 'n_sats', 'flags')
 
@@ -314,7 +314,7 @@ class PiksiMulti:
         # Do not publish llh message, prefer publishing directly navsatfix_spp or navsatfix_rtk_fix.
         # KIMON: uncommented the following:
         publishers['pos_llh'] = rospy.Publisher(rospy.get_name() + '/pos_llh',
-                                               PosLlh, queue_size=10)
+                                               PosLlhMulti, queue_size=10)
         publishers['vel_ned'] = rospy.Publisher(rospy.get_name() + '/vel_ned',
                                                 VelNed, queue_size=10)
         publishers['log'] = rospy.Publisher(rospy.get_name() + '/log',
