@@ -251,9 +251,10 @@ class PiksiMulti:
             self.handler.add_callback(self.cb_sbp_base_pos_llh, msg_type=SBP_MSG_BASE_POS_LLH)
 
         # do not publish llh message, prefer publishing directly navsatfix_spp or navsatfix_rtk_fix.
-        # self.init_callback('pos_llh', PosLlh,
-        #                   SBP_MSG_POS_LLH, MsgPosLLH,
-        #                   'tow', 'lat', 'lon', 'height', 'h_accuracy', 'v_accuracy', 'n_sats', 'flags')
+        # KIMON: uncommented this
+        self.init_callback('pos_llh', PosLlh,
+                          SBP_MSG_POS_LLH, MsgPosLLH,
+                          'tow', 'lat', 'lon', 'height', 'h_accuracy', 'v_accuracy', 'n_sats', 'flags')
 
         # Relay "corrections" messages via UDP if in base station mode.
         if self.base_station_mode:
@@ -311,8 +312,9 @@ class PiksiMulti:
         publishers['receiver_state'] = rospy.Publisher(rospy.get_name() + '/debug/receiver_state',
                                                        ReceiverState, queue_size=10)
         # Do not publish llh message, prefer publishing directly navsatfix_spp or navsatfix_rtk_fix.
-        # publishers['pos_llh'] = rospy.Publisher(rospy.get_name() + '/pos_llh',
-        #                                        PosLlh, queue_size=10)
+        # KIMON: uncommented the following:
+        publishers['pos_llh'] = rospy.Publisher(rospy.get_name() + '/pos_llh',
+                                               PosLlh, queue_size=10)
         publishers['vel_ned'] = rospy.Publisher(rospy.get_name() + '/vel_ned',
                                                 VelNed, queue_size=10)
         publishers['log'] = rospy.Publisher(rospy.get_name() + '/log',
